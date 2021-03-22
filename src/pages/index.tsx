@@ -1,15 +1,17 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 
-import Layout from '../components/layout'
 import SEO from '../components/SEO'
+import About from '../components/about'
+import Hero from '../components/hero'
 
 const IndexPage: React.FC = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
-    <h1>Hello World</h1>
-    <StaticImage src="../images/tomorrowland.jpg" alt="tomorrowland" />
-  </Layout>
+    <Hero />
+    {/* <About />
+    <StaticImage src="../assets/images/tomorrowland.jpg" alt="tomorrowland" /> */}
+  </>
 )
 
 export default IndexPage
