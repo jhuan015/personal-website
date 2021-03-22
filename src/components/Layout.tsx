@@ -12,9 +12,8 @@ import Header from './header'
 import 'normalize.css'
 import './layout.css'
 import GlobalStyles from '../styles/GlobalStyles'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import IconNav from './IconNav'
-import theme from '../styles/theme'
 
 const LayoutStyles = styled.div`
   background-color: ${props => props.theme.palette.background};
@@ -32,7 +31,7 @@ const Layout: React.FC = ({ children }) => {
   `)
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <GlobalStyles />
       <LayoutStyles>
         <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
@@ -44,7 +43,7 @@ const Layout: React.FC = ({ children }) => {
           </footer>
         </div>
       </LayoutStyles>
-    </ThemeProvider>
+    </>
   )
 }
 
