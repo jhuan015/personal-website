@@ -2,17 +2,29 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { IconStyles } from '../styles/common-styles'
-import { Link } from 'gatsby'
 
 const IconContainerStyles = styled.div`
-  width: 40px;
   position: fixed;
-  bottom: 50%;
-  left: 20px;
-  right: auto;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: ${props => props.theme.palette.primary.light};
   z-index: 1;
   svg {
     ${IconStyles}
+  }
+  ${props => props.theme.breakpoints.up('sm')} {
+    width: 40px;
+    background-color: transparent;
+    display: block;
+    bottom: 45%;
+    left: 20px;
+    right: auto;
+    svg {
+      ${IconStyles}
+    }
   }
 `
 

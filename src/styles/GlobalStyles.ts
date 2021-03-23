@@ -12,6 +12,13 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     position: relative;
     font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+  body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-wrap: break-word;
+  font-kerning: normal;
+}
   p, li {
     color: ${props => props.theme.palette.text.primary};
     letter-spacing: 0.5px;

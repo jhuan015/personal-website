@@ -1,32 +1,103 @@
 import React from 'react'
 import styled from 'styled-components'
+import anime from 'animejs'
 
 const HeroStyles = styled.section`
-  height: 420px;
-  padding: 200px 0px 50px 30px;
+  display: flex;
+  height: 98vh;
   background-color: ${props => props.theme.palette.primary.light};
   h1 {
-    font-size: clamp(50px, 8vw, 80px);
+    font-size: clamp(45px, 8vw, 80px);
     font-weight: 800;
+    padding-bottom: 30px;
   }
   h4 {
     font-size: clamp(25px, 4vw, 40px);
     margin-bottom: 25px;
   }
-  ${props => props.theme.breakpoints.up('sm')} {
-    padding: 150px;
-  }
-  ${props => props.theme.breakpoints.up('md')} {
-    padding: 250px;
+  p {
+    max-width: 550px;
   }
 `
 
+const HeroContainer = styled.div`
+  max-width: 1600px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0px auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  ${props => props.theme.breakpoints.up('sm')} {
+    padding: 0 100px;
+  }
+`
+
+const SlidingText = styled.div`
+  display: inline;
+  span {
+    display: block;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: ${props => props.theme.palette.primary.dark};
+    ${props => props.theme.breakpoints.up('sm')} {
+      display: inline;
+      margin-left: 5px;
+    }
+  }
+`
+
+const InterestText = styled.h4`
+  opacity: 0.8;
+`
+
+const wordList = [
+  'Coding',
+  'Gaming',
+  'Science',
+  'Music Festivals',
+  'Travel',
+  'The Environment',
+  'Movies',
+]
+
 const Hero: React.FC = () => {
+  React.useEffect(() => {
+    // Slide up animation
+    anime({
+      targets: '.slideUp span',
+      keyframes: [
+        { translateY: 50, opacity: 0, duration: 0 },
+        { translateY: 0, opacity: 1, duration: 250 },
+        { translateY: -50, opacity: 0, delay: 2000, duration: 250 },
+      ],
+      easing: 'linear',
+      delay: anime.stagger(2500, { start: 0 }),
+      loop: true,
+    })
+  }, [])
+
   return (
     <HeroStyles>
-      <h4>Hey👋, my name is</h4>
-      <h1>Jonathan Huang</h1>
-      {/* <h3>Thing&apos;s that interest me are</h3> */}
+      <HeroContainer>
+        <h4>Hey👋, my name is</h4>
+        <h1>Jonathan Huang</h1>
+        <InterestText>
+          Thing&apos;s that interest me are
+          <SlidingText className="slideUp">
+            {wordList.map((word, i) => {
+              return <span key={i}>{word}</span>
+            })}
+          </SlidingText>
+        </InterestText>
+        <p>
+          I&apos;m a software engineer based in Irvine, CA specializing in front
+          end development.
+        </p>
+      </HeroContainer>
     </HeroStyles>
   )
 }

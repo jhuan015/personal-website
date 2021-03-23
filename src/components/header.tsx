@@ -9,6 +9,7 @@ const HeaderStyles = styled.header`
   background: ${props => props.theme.palette.primary.light};
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1;
   svg {
