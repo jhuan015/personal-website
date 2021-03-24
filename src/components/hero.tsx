@@ -13,17 +13,21 @@ const HeroStyles = styled.section`
   }
   h4 {
     font-size: clamp(25px, 4vw, 40px);
-    margin-bottom: 25px;
   }
   p {
     max-width: 550px;
   }
 `
 
+const IntroText = styled.h4`
+  font-size: clamp(25px, 4vw, 40px);
+  margin-bottom: 25px;
+`
+
 const HeroContainer = styled.div`
   max-width: 1600px;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 25px;
   margin: 0px auto;
   justify-content: center;
   display: flex;
@@ -52,6 +56,10 @@ const SlidingText = styled.div`
 
 const InterestText = styled.h4`
   opacity: 0.8;
+  margin-bottom: 50px;
+  ${props => props.theme.breakpoints.up('sm')} {
+    margin-bottom: 25px;
+  }
 `
 
 const wordList = [
@@ -71,11 +79,11 @@ const Hero: React.FC = () => {
       targets: '.slideUp span',
       keyframes: [
         { translateY: 50, opacity: 0, duration: 0 },
-        { translateY: 0, opacity: 1, duration: 250 },
-        { translateY: -50, opacity: 0, delay: 2000, duration: 250 },
+        { translateY: 0, opacity: 1, duration: 350 },
+        { translateY: -50, opacity: 0, delay: 3000, duration: 350 },
       ],
       easing: 'linear',
-      delay: anime.stagger(2500, { start: 0 }),
+      delay: anime.stagger(3500, { start: 0 }),
       loop: true,
     })
   }, [])
@@ -83,7 +91,7 @@ const Hero: React.FC = () => {
   return (
     <HeroStyles>
       <HeroContainer>
-        <h4>Hey👋, my name is</h4>
+        <IntroText>Hey👋, my name is</IntroText>
         <h1>Jonathan Huang</h1>
         <InterestText>
           Thing&apos;s that interest me are
