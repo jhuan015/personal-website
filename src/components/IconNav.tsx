@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
-import { IconStyles } from '../styles/common-styles'
+import { IconButton } from '../styles/CommonStyles'
 
 const IconContainerStyles = styled.div`
   position: fixed;
@@ -13,7 +13,15 @@ const IconContainerStyles = styled.div`
   background-color: ${props => props.theme.palette.primary.light};
   z-index: 1;
   svg {
-    ${IconStyles}
+    ${IconButton}
+  }
+  a {
+    position: relative;
+    transition: bottom ease-in 300ms;
+    :focus,
+    :hover {
+      bottom: 5px;
+    }
   }
   ${props => props.theme.breakpoints.up('sm')} {
     width: 40px;
@@ -22,9 +30,6 @@ const IconContainerStyles = styled.div`
     bottom: 45%;
     left: 20px;
     right: auto;
-    svg {
-      ${IconStyles}
-    }
   }
 `
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import anime from 'animejs'
+import { FilledButton } from '../styles/CommonStyles'
 
 const HeroStyles = styled.section`
   display: flex;
@@ -15,7 +16,7 @@ const HeroStyles = styled.section`
     font-size: clamp(25px, 4vw, 40px);
   }
   p {
-    max-width: 550px;
+    max-width: 600px;
   }
 `
 
@@ -63,9 +64,10 @@ const InterestText = styled.h4`
 `
 
 const wordList = [
-  'Coding',
+  'Technology',
   'Gaming',
   'Science',
+  'Good food',
   'Music Festivals',
   'Travel',
   'The Environment',
@@ -79,8 +81,8 @@ const Hero: React.FC = () => {
       targets: '.slideUp span',
       keyframes: [
         { translateY: 50, opacity: 0, duration: 0 },
-        { translateY: 0, opacity: 1, duration: 350 },
-        { translateY: -50, opacity: 0, delay: 3000, duration: 350 },
+        { translateY: 0, opacity: 1, duration: 500 },
+        { translateY: -50, opacity: 0, delay: 3000, duration: 500 },
       ],
       easing: 'linear',
       delay: anime.stagger(3500, { start: 0 }),
@@ -91,13 +93,13 @@ const Hero: React.FC = () => {
   return (
     <HeroStyles>
       <HeroContainer>
-        <IntroText>Hey👋, my name is</IntroText>
+        <IntroText>Hi there 👋, my name is</IntroText>
         <h1>Jonathan Huang</h1>
         <InterestText>
           Thing&apos;s that interest me are
           <SlidingText className="slideUp">
             {wordList.map((word, i) => {
-              return <span key={i}>{word}</span>
+              return <span key={i}>&nbsp;{word}</span>
             })}
           </SlidingText>
         </InterestText>
@@ -105,6 +107,11 @@ const Hero: React.FC = () => {
           I&apos;m a software engineer based in Irvine, CA specializing in front
           end development.
         </p>
+        <div>
+          <FilledButton href="mailto:jhuan015@ucr.edu?subject=Hi there">
+            Contact Me
+          </FilledButton>
+        </div>
       </HeroContainer>
     </HeroStyles>
   )

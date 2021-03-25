@@ -18,7 +18,17 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   -moz-osx-font-smoothing: grayscale;
   word-wrap: break-word;
   font-kerning: normal;
-}
+  }
+  a {
+    color: ${props => props.theme.palette.text.primary};
+    text-decoration: none;
+    :hover {
+      cursor: pointer;
+    }
+    :focus {
+      outline: ${props => props.theme.palette.text.primary} 2px dashed;
+    }
+  }
   p, li {
     color: ${props => props.theme.palette.text.primary};
     letter-spacing: 0.5px;
@@ -35,6 +45,27 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   }
   footer {
     color: ${props => props.theme.palette.text.primary}; 
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.palette.primary.dark};
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: 0.7;
   }
   .center {
     text-align: center;

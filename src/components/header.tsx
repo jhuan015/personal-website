@@ -4,7 +4,7 @@ import { MdClear, MdHome, MdMenu } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import { IconStyles } from '../styles/common-styles'
+import { IconButton } from '../styles/CommonStyles'
 
 const HeaderStyles = styled.header`
   background: ${props => props.theme.palette.primary.light};
@@ -14,7 +14,7 @@ const HeaderStyles = styled.header`
   width: 100%;
   z-index: 1;
   svg {
-    ${IconStyles}
+    ${IconButton}
     cursor: pointer;
   }
 `
@@ -26,7 +26,7 @@ const NavStyles = styled.nav`
   align-items: center;
   justify-content: space-between;
   ${props => props.theme.breakpoints.up('md')} {
-    padding: 10px 50px;
+    padding: 10px 50px 10px 20px;
   }
   .menu-enter {
     right: -500px;
@@ -112,12 +112,24 @@ interface Props {
 
 const Links: React.FC = () => (
   <>
-    <li>About</li>
-    <li>Experience</li>
-    <li>Projects</li>
-    <li>Blog</li>
-    <li>Contact</li>
-    <CgFileDocument />
+    <a href="#about">
+      <li>About</li>
+    </a>
+    <a href="#experience">
+      <li>Experience</li>
+    </a>
+    <a href="#projects">
+      <li>Projects</li>
+    </a>
+    <a href="/blog">
+      <li>Blog</li>
+    </a>
+    <a href="#contact">
+      <li>Contact</li>
+    </a>
+    <a href="#">
+      <CgFileDocument />
+    </a>
   </>
 )
 
