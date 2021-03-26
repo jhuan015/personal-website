@@ -63,6 +63,10 @@ const InterestText = styled.h4`
   }
 `
 
+const DetailText = styled.p`
+  margin-bottom: 20px;
+`
+
 const wordList = [
   'Technology',
   'Gaming',
@@ -96,17 +100,17 @@ const Hero: React.FC = () => {
         <IntroText>Hi there 👋, my name is</IntroText>
         <h1>Jonathan Huang</h1>
         <InterestText>
-          Thing&apos;s that interest me are
+          Thing&apos;s that interest me are&nbsp;
           <SlidingText className="slideUp">
             {wordList.map((word, i) => {
-              return <span key={i}>&nbsp;{word}</span>
+              return <span key={i}>{word}</span>
             })}
           </SlidingText>
         </InterestText>
-        <p>
+        <DetailText>
           I&apos;m a software engineer based in Irvine, CA specializing in front
           end development.
-        </p>
+        </DetailText>
         <div>
           <FilledButton href="mailto:jhuan015@ucr.edu?subject=Hi there">
             Contact Me

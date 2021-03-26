@@ -13,4 +13,16 @@ exports.wrapPageElement = ({ element, props }) => (
   // including location, data, etc - you don't need to pass it
   <Layout {...props}>{element}</Layout>
 )
+
+const scrollTo = id => () => {
+  const el = document.querySelector(id)
+  if (el) return window.scrollTo(0, el.offsetTop - 70)
+  return false
+}
+
+exports.onRouteUpdate = ({ location: { hash } }) => {
+  if (hash) {
+    window.setTimeout(scrollTo(hash), 10)
+  }
+}
 /* eslint-enable */

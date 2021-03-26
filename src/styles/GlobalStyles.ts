@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     box-sizing: border-box;
     position: relative;
     font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: smooth;
   }
   body {
   margin: 0;
@@ -24,9 +25,15 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     text-decoration: none;
     :hover {
       cursor: pointer;
+      color: ${props => props.theme.palette.primary.dark};
     }
     :focus {
       outline: ${props => props.theme.palette.text.primary} 2px dashed;
+    }
+    li {
+      :hover {
+      color: ${props => props.theme.palette.primary.dark};
+      }
     }
   }
   p, li {

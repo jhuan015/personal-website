@@ -58,8 +58,9 @@ const NavLinkStyles = styled.ul`
 `
 
 const MobileNavLinkStyles = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
   gap: 20px;
   list-style: none;
   margin: 0;
@@ -99,7 +100,7 @@ const Panel = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 80vw;
+  width: 50vw;
   height: 100vh;
   background-color: ${props => props.theme.palette.primary.light};
   box-shadow: rgba(0, 0, 0, 0.22) 0px 11px 23px 5px;
