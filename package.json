@@ -5,8 +5,10 @@
   "author": "Jonathan Huang <jhuan015@ucr.edu>",
   "dependencies": {
     "animejs": "^3.2.1",
+    "clsx": "^1.1.1",
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
+    "gatsby-plugin-google-gtag": "^3.1.0",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-manifest": "^3.0.0",

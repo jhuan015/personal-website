@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
-import { MdClear, MdHome, MdMenu } from 'react-icons/md'
+import { MdClear, MdMenu } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
@@ -14,8 +14,19 @@ const HeaderStyles = styled.header`
   width: 100%;
   z-index: 1;
   svg {
-    ${IconButton}
-    cursor: pointer;
+    ${IconButton};
+    :focus,
+    :hover {
+      color: ${props => props.theme.palette.primary.dark};
+      fill: ${props => props.theme.palette.primary.dark};
+    }
+  }
+  li {
+    :focus,
+    :hover {
+      color: ${props => props.theme.palette.primary.dark};
+      fill: ${props => props.theme.palette.primary.dark};
+    }
   }
 `
 
@@ -25,6 +36,10 @@ const NavStyles = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  h3 {
+    font-weight: 800;
+    color: inherit;
+  }
   ${props => props.theme.breakpoints.up('md')} {
     padding: 10px 50px 10px 20px;
   }
@@ -128,7 +143,7 @@ const Links: React.FC = () => (
     <a href="#contact">
       <li>Contact</li>
     </a>
-    <a href="#">
+    <a id="resume" href="/Jonathan Huang - Resume.pdf">
       <CgFileDocument />
     </a>
   </>
@@ -141,7 +156,7 @@ const Header: React.FC<Props> = () => {
     <HeaderStyles>
       <NavStyles>
         <Link to="/">
-          <MdHome />
+          <h3>{'<jh />'}</h3>
         </Link>
         <NavLinkStyles>
           <Links />

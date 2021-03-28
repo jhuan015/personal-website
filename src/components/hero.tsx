@@ -48,7 +48,7 @@ const SlidingText = styled.div`
     font-weight: 800;
     margin-bottom: 10px;
     color: ${props => props.theme.palette.primary.dark};
-    ${props => props.theme.breakpoints.up('sm')} {
+    ${props => props.theme.breakpoints.up('md')} {
       display: inline;
       margin-left: 5px;
     }

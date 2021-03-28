@@ -10,6 +10,7 @@ export const IconButton = css`
   height: 25px;
   width: 25px;
   padding: 10px;
+  cursor: pointer;
   :focus,
   :hover {
     color: ${props => props.theme.palette.primary.dark};
@@ -26,13 +27,15 @@ const ButtonStyles = css`
   text-decoration: none;
   border: 2px solid ${props => props.theme.palette.primary.contrast};
   border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
 
 export const FilledButton = styled.a`
   ${ButtonStyles}
   background-color: ${props => props.theme.palette.primary.contrast};
-  color: ${props => props.theme.palette.text.primary};
-  cursor: pointer;
+  && {
+    color: ${props => props.theme.palette.text.primary};
+  }
   :hover,
   :focus {
     opacity: 0.7;

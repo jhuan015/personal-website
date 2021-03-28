@@ -10,17 +10,30 @@ const IconContainerStyles = styled.div`
   left: 0;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  height: 60px;
   background-color: ${props => props.theme.palette.primary.light};
   z-index: 1;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
+    rgb(0 0 0 / 9%) 0px -3px 5px;
   svg {
     ${IconButton}
+    ${props => props.theme.breakpoints.up('sm')} {
+      :hover {
+        color: ${props => props.theme.palette.primary.contrast};
+        fill: ${props => props.theme.palette.primary.contrast};
+      }
+    }
   }
   a {
     position: relative;
     transition: bottom ease-in 300ms;
-    :focus,
-    :hover {
-      bottom: 5px;
+    ${props => props.theme.breakpoints.up('sm')} {
+      :focus,
+      :hover {
+        bottom: 5px;
+      }
     }
   }
   ${props => props.theme.breakpoints.up('sm')} {
@@ -30,6 +43,7 @@ const IconContainerStyles = styled.div`
     bottom: 45%;
     left: 20px;
     right: auto;
+    box-shadow: none;
   }
 `
 

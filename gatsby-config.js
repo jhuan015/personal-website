@@ -5,6 +5,16 @@ module.exports = {
     author: 'jhuan015',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-gtag',
+      options: {
+        gtagConfig: {
+          optimize_id: 'GTM-PWRQHQF',
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-image',

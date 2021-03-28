@@ -17,6 +17,7 @@ import IconNav from './IconNav'
 
 const LayoutStyles = styled.div`
   background-color: ${props => props.theme.palette.background};
+  padding-bottom: 80px;
 `
 
 const Layout: React.FC = ({ children }) => {

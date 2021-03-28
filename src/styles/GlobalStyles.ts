@@ -39,6 +39,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   p, li {
     color: ${props => props.theme.palette.text.primary};
     letter-spacing: 0.5px;
+    line-height: 1.5;
   }
   h1,h2,h3,h4,h5,h6 {
     color: ${props => props.theme.palette.text.primary};
@@ -73,6 +74,12 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     opacity: 0.7;
+  }
+  ::selection {
+    background:  ${props => props.theme.palette.primary.contrast};
+  }
+  ::-moz-selection {
+    background:  ${props => props.theme.palette.primary.contrast};
   }
   .center {
     text-align: center;

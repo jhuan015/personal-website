@@ -4,22 +4,29 @@ import PictureSlide from './pictureSlide'
 
 const AboutStyles = styled.section`
   padding: 0px 25px;
-  margin: 100px 20px;
+  margin: 50px auto;
+  max-width: 400px;
   justify-content: center;
   align-items: center;
   display: grid;
-  gap: 50px;
-  grid-template-columns: 1fr;
-  p {
-    line-height: 1.5;
-  }
+  gap: 25px 50px;
+  grid-template:
+    'title'
+    'pic'
+    'details';
   .gatsby-image-wrapper {
     margin: 0 15vw;
+  }
+  ${props => props.theme.breakpoints.up('sm')} {
+    /* max-width: 800px; */
   }
   ${props => props.theme.breakpoints.up('md')} {
     max-width: 1000px;
     margin: 100px auto;
     padding: 0 100px;
+    grid-template:
+      'title title title title'
+      'pic details details details';
     grid-template-columns: 1fr 3fr;
     .gatsby-image-wrapper {
       margin: 0;
@@ -27,12 +34,28 @@ const AboutStyles = styled.section`
   }
 `
 
+const TitleStyles = styled.h1`
+  text-align: center;
+  grid-area: title;
+  ${props => props.theme.breakpoints.up('md')} {
+    text-align: left;
+  }
+`
+
+const PictureSlideStyles = styled(PictureSlide)`
+  grid-area: pic;
+`
+
+const DetailsStyles = styled.div`
+  grid-area: details;
+`
+
 const About: React.FC = () => {
   return (
     <AboutStyles id="about">
-      <PictureSlide />
-      <div>
-        <h1>About Me</h1>
+      <TitleStyles>About Me</TitleStyles>
+      <PictureSlideStyles />
+      <DetailsStyles>
         <p>
           I am a Taiwanese American full stack JavaScript engineer with
           experience working with a variety of technologies including React,
@@ -61,7 +84,7 @@ const About: React.FC = () => {
           I enjoy traveling abroad and attending different music festivals
           throughout the world.
         </p>
-      </div>
+      </DetailsStyles>
     </AboutStyles>
   )
 }
