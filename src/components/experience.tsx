@@ -67,9 +67,6 @@ const ExperienceHeaderStyles = styled.div`
 
 const Title = styled.h1`
   display: none;
-  background-color: ${props => props.theme.palette.primary.contrast};
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   padding: 15px;
   ${props => props.theme.breakpoints.up('md')} {
     display: block;
@@ -92,8 +89,12 @@ const ExperienceContent = styled.div`
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-top-right-radius: 0;
   ${props => props.theme.breakpoints.up('sm')} {
     padding: 30px;
+  }
+  ${props => props.theme.breakpoints.up('md')} {
+    border-top-right-radius: 15px;
   }
 `
 
