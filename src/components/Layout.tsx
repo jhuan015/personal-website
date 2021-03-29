@@ -16,7 +16,9 @@ import styled from 'styled-components'
 import IconNav from './IconNav'
 
 const LayoutStyles = styled.div`
+  min-height: 90vh;
   background-color: ${props => props.theme.palette.background};
+  padding-top: 65px;
   padding-bottom: 80px;
 `
 

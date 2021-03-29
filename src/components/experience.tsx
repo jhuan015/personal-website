@@ -18,7 +18,7 @@ const ExpedienceStyles = styled.section`
     padding: 0;
   }
   ${props => props.theme.breakpoints.up('lg')} {
-    max-width: 1100px;
+    max-width: 1300px;
   }
 `
 

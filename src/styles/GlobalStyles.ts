@@ -67,7 +67,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.palette.primary.dark};
+    background: ${props => props.theme.palette.primary.contrast};
     border-radius: 10px;
   }
 

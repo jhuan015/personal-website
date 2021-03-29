@@ -1,8 +1,14 @@
+/* eslint-disable */
+const dotenv = require('dotenv')
+
+dotenv.config({ path: '.env' })
+
 module.exports = {
   siteMetadata: {
     title: 'Jonathan Huang',
     description: 'Personal site.',
     author: 'jhuan015',
+    siteUrl: 'https://jonshuang.com',
   },
   plugins: [
     {
@@ -48,8 +54,19 @@ module.exports = {
       },
     },
     'gatsby-plugin-graphql-codegen',
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: 'kb6eepmw',
+        dataset: 'production',
+        token: process.env.SANITY_TOKEN,
+        watchMode: true,
+        apiVersion: '2021-03-25',
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     'gatsby-plugin-offline',
   ],
 }
+/* eslint-enable */
