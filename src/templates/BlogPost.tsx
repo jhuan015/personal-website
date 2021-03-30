@@ -4,6 +4,9 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import BlockContent from '@sanity/block-content-to-react'
 import { Query } from '../../graphql-types'
 import Figure from '../components/Figure'
+import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import styled from 'styled-components'
+import { IconButton } from '../styles/CommonStyles'
 // import Container from '../components/container'
 // import SEO from '../components/seo'
 // import { toPlainText } from '../lib/helpers'
@@ -35,24 +38,9 @@ export const query = graphql`
       _rawBody(resolveReferences: { maxDepth: 5 })
       author {
         image {
-          crop {
-            _key
-            _type
-            top
-            bottom
-            left
-            right
-          }
-          hotspot {
-            _key
-            _type
-            x
-            y
-            height
-            width
-          }
           asset {
             _id
+            gatsbyImageData(width: 150, placeholder: DOMINANT_COLOR)
           }
         }
         name
@@ -67,6 +55,72 @@ const serializers = {
   },
 }
 
+const BlogPostStyles = styled.section`
+  display: block;
+  ${props => props.theme.breakpoints.up('md')} {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+`
+
+const AuthorPanel = styled.aside`
+  display: none;
+  height: 900px;
+  position: sticky;
+  top: 69px;
+  left: 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 50px;
+  background-color: ${props => props.theme.palette.primary.dark};
+  ${props => props.theme.breakpoints.up('md')} {
+    display: block;
+  }
+  .gatsby-image-wrapper {
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      text-align: center;
+    }
+  }
+  ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    svg {
+      ${IconButton};
+      :hover {
+        color: ${props => props.theme.palette.primary.contrast};
+        fill: ${props => props.theme.palette.primary.contrast};
+      }
+    }
+  }
+`
+
+const ArticleContent = styled.div`
+  padding: 0 50px;
+`
+
+const SmallAuthor = styled.div`
+  display: flex;
+  gap: 10px;
+  ${props => props.theme.breakpoints.up('md')} {
+    display: none;
+  }
+  .gatsby-image-wrapper {
+    border-radius: 50%;
+    width: 100px;
+  }
+`
+
 interface Props {
   data: Query
 }
@@ -74,7 +128,7 @@ const BlogPost: React.FC<Props> = props => {
   const { data } = props
   const post = data && data.sanityPost
   return (
-    <>
+    <BlogPostStyles>
       {/* {post && (
         <SEO
           title={post.title || 'Untitled'}
@@ -82,13 +136,63 @@ const BlogPost: React.FC<Props> = props => {
           image={post.mainImage}
         />
       )} */}
+      <AuthorPanel>
+        <nav>
+          <GatsbyImage
+            alt={post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'}
+            image={post?.author?.image?.asset?.gatsbyImageData}
+          />
+          <h3>Hi! I&apos;m Jonathan</h3>
+          <p>
+            {' '}
+            I&apos;m a software engineer based in Irvine, CA specializing in
+            front end development.
+          </p>
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/jonshuang/"
+              >
+                <FaLinkedin />
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/jhuan015"
+              >
+                <FaGithub />
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.instagram.com/joncaekk/"
+              >
+                <FaInstagram />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </AuthorPanel>
       <article>
         <GatsbyImage
           key={post?.id}
           alt={post?.mainImage?.asset?.altText ?? `${post?.title} main image`}
           image={post?.mainImage?.asset?.gatsbyImageData}
         />
-        <div>
+        <SmallAuthor>
+          <GatsbyImage
+            alt={post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'}
+            image={post?.author?.image?.asset?.gatsbyImageData}
+          />
+          <h4>Jonathan Huang</h4>
+        </SmallAuthor>
+        <ArticleContent>
           <h1>{post?.title}</h1>
           <BlockContent
             blocks={post?._rawBody}
@@ -99,9 +203,9 @@ const BlogPost: React.FC<Props> = props => {
           {post?.categories?.map(category => (
             <li key={category?._id}>{category?.title}</li>
           ))}
-        </div>
+        </ArticleContent>
       </article>
-    </>
+    </BlogPostStyles>
   )
 }
 

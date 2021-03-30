@@ -13,7 +13,6 @@ import 'normalize.css'
 import './layout.css'
 import GlobalStyles from '../styles/GlobalStyles'
 import styled from 'styled-components'
-import IconNav from './IconNav'
 
 const LayoutStyles = styled.div`
   min-height: 90vh;
@@ -38,7 +37,6 @@ const Layout: React.FC = ({ children }) => {
       <GlobalStyles />
       <LayoutStyles>
         <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-        <IconNav />
         <div>
           <main>{children}</main>
           <footer className="center">
