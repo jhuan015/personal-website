@@ -1,12 +1,13 @@
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import BlockContent from '@sanity/block-content-to-react'
 import { formatDistance } from 'date-fns'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { IoMdArrowBack } from 'react-icons/io'
 import { Query } from '../../graphql-types'
 import Figure from '../components/Figure'
-import { IconButton } from '../styles/CommonStyles'
+import { ContrastIconButton, DarkIconButton } from '../styles/CommonStyles'
 import SEO from '../components/SEO'
 import IconNav, { socialLinks } from '../components/IconNav'
 
@@ -23,7 +24,8 @@ export const query = graphql`
       mainImage {
         asset {
           gatsbyImageData(
-            aspectRatio: 3.6
+            aspectRatio: 1.3333
+            height: 300
             placeholder: DOMINANT_COLOR
             formats: [AUTO, WEBP, AVIF]
             layout: FULL_WIDTH
@@ -55,18 +57,39 @@ const serializers = {
   },
 }
 
-const BlogPostStyles = styled.section`
-  display: block;
-  ${props => props.theme.breakpoints.up('md')} {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
+const ContainerStyles = css`
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 16px 32px;
   ${props => props.theme.breakpoints.up('lg')} {
-    grid-template-columns: 1fr 4fr;
+    max-width: 80vw;
   }
 `
 
-const AuthorPanel = styled.aside`
+const LargeTextStyles = css`
+  font-size: 40px;
+  font-weight: 800;
+  margin: 10px 0;
+`
+
+const HeroImage = styled(GatsbyImage)`
+  height: 300px;
+  ${props => props.theme.breakpoints.up('md')} {
+    height: auto;
+  }
+`
+
+const BlogPostStyles = styled.article`
+  ${ContainerStyles}
+  display: block;
+  ${props => props.theme.breakpoints.up('md')} {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr;
+    gap: 15px;
+  }
+`
+
+const SidePanel = styled.aside`
   display: none;
   height: 60vh;
   position: sticky;
@@ -77,11 +100,28 @@ const AuthorPanel = styled.aside`
   }
 `
 
+const LinkStyles = styled(Link)`
+  display: flex;
+  align-items: center;
+  transition: transform 250ms;
+  svg {
+    ${DarkIconButton}
+    padding: 5px;
+  }
+  :hover {
+    transform: translateY(-5px);
+    svg {
+      transform: translateX(-5px);
+      fill: ${props => props.theme.palette.primary.dark};
+    }
+  }
+`
+
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: ${props => props.theme.palette.primary.light};
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -111,29 +151,52 @@ const NavContainer = styled.div`
     align-items: center;
     justify-content: space-around;
     svg {
-      ${IconButton};
-      :hover {
-        color: ${props => props.theme.palette.primary.contrast};
-        fill: ${props => props.theme.palette.primary.contrast};
-      }
+      ${ContrastIconButton};
     }
+  }
+`
+
+const MobileHeader = styled.div`
+  display: block;
+  ${ContainerStyles}
+  background-color: ${props => props.theme.palette.primary.light};
+  ${props => props.theme.breakpoints.up('md')} {
+    display: none;
+  }
+`
+
+const MobileTitle = styled.h1`
+  display: block;
+  ${LargeTextStyles}
+`
+
+const Title = styled.h1`
+  display: none;
+  ${LargeTextStyles}
+  ${props => props.theme.breakpoints.up('md')} {
+    display: block;
   }
 `
 
 const ArticleContent = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 32px;
 `
 
-const SmallAuthor = styled.div`
+const MobileAuthor = styled.div`
+  ${ContainerStyles}
   display: flex;
-  gap: 10px;
+  gap: 30px;
   align-items: center;
-  margin: 20px 0;
+  background-color: ${props => props.theme.palette.primary.light};
+  padding: 16px 0;
   .gatsby-image-wrapper {
-    border-radius: 50%;
     width: 100px;
+    overflow: visible;
+    & [data-main-image] {
+      border-radius: 50%;
+      border: 4px solid ${props => props.theme.palette.primary.dark};
+    }
   }
   p {
     margin: 5px 0;
@@ -169,8 +232,20 @@ const BlogPost: React.FC<Props> = props => {
       addSuffix: true,
     })
 
+  const authorImage = (
+    <GatsbyImage
+      alt={post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'}
+      image={post?.author?.image?.asset?.gatsbyImageData}
+    />
+  )
+
+  // Add tags later
+  // const tags = post?.categories?.map(category => (
+  //   <p key={category?._id}>{category?.title}</p>
+  // ))
+
   return (
-    <BlogPostStyles>
+    <section>
       {post && (
         <SEO
           title={post.title || 'Blog Post'}
@@ -178,74 +253,67 @@ const BlogPost: React.FC<Props> = props => {
           image={post.mainImage?.asset?.gatsbyImageData.images.fallback.src}
         />
       )}
-      <AuthorPanel>
-        <nav>
-          <NavContainer>
-            <h1>{post?.title}</h1>
+      <HeroImage
+        key={post?.id}
+        alt={post?.mainImage?.asset?.altText ?? `${post?.title} main image`}
+        image={post?.mainImage?.asset?.gatsbyImageData}
+      />
+      <MobileHeader>
+        <MobileTitle>{post?.title}</MobileTitle>
+        <MobileAuthor>
+          {authorImage}
+          <div>
+            <h3>Jonathan Huang</h3>
             <p>Published: {publishedDate}</p>
             {updatedDate && <p>Updated: {updatedDate}</p>}
-          </NavContainer>
-          <NavContainer>
-            <GatsbyImage
-              alt={
-                post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'
-              }
-              image={post?.author?.image?.asset?.gatsbyImageData}
-            />
-            <h3>Hi! I&apos;m Jonathan</h3>
-            <p>
-              {' '}
-              I&apos;m a software engineer based in Irvine, CA specializing in
-              front end development.
-            </p>
-            <ul>
-              {socialLinks.map(social => (
-                <li key={social.name}>
-                  <a target="_blank" rel="noreferrer" href={social.src}>
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </NavContainer>
-        </nav>
-      </AuthorPanel>
-      <article>
-        <GatsbyImage
-          key={post?.id}
-          alt={post?.mainImage?.asset?.altText ?? `${post?.title} main image`}
-          image={post?.mainImage?.asset?.gatsbyImageData}
-        />
-        <ArticleContent>
-          <h1>{post?.title}</h1>
-          <SmallAuthor>
-            <GatsbyImage
-              alt={
-                post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'
-              }
-              image={post?.author?.image?.asset?.gatsbyImageData}
-            />
-            <div>
-              <h3>Jonathan Huang</h3>
+          </div>
+        </MobileAuthor>
+      </MobileHeader>
+      <BlogPostStyles>
+        <SidePanel>
+          <nav>
+            <NavContainer>
+              <LinkStyles to="/blog">
+                <IoMdArrowBack /> Back to Blog
+              </LinkStyles>
+              <h1>{post?.title}</h1>
               <p>Published: {publishedDate}</p>
               {updatedDate && <p>Updated: {updatedDate}</p>}
-            </div>
-          </SmallAuthor>
+            </NavContainer>
+            <NavContainer>
+              {authorImage}
+              <h3>Hi! I&apos;m Jonathan</h3>
+              <p>
+                {' '}
+                I&apos;m a software engineer based in Irvine, CA specializing in
+                front end development.
+              </p>
+              <ul>
+                {socialLinks.map(social => (
+                  <li key={social.name}>
+                    <a target="_blank" rel="noreferrer" href={social.src}>
+                      {social.icon}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </NavContainer>
+          </nav>
+        </SidePanel>
+        <ArticleContent>
+          <Title>{post?.title}</Title>
           <BlockContent
             blocks={post?._rawBody}
             serializers={serializers}
             projectId={process.env.GATSBY_SANITY_PROJECT_ID}
             dataset={process.env.GATSBY_SANITY_PROJECT_DATASET}
           />
-          {post?.categories?.map(category => (
-            <li key={category?._id}>{category?.title}</li>
-          ))}
         </ArticleContent>
-      </article>
+      </BlogPostStyles>
       <IconNavWrapper>
         <IconNav />
       </IconNavWrapper>
-    </BlogPostStyles>
+    </section>
   )
 }
 
