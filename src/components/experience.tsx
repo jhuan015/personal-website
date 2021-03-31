@@ -11,14 +11,13 @@ const ExpedienceStyles = styled.section`
   margin: 50px auto;
   justify-content: center;
   align-items: center;
-  max-width: 400px;
+  max-width: 800px;
   ${props => props.theme.breakpoints.up('md')} {
-    max-width: 800px;
     margin: 100px auto;
     padding: 0;
   }
   ${props => props.theme.breakpoints.up('lg')} {
-    max-width: 1300px;
+    max-width: 1100px;
   }
 `
 

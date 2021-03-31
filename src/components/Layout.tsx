@@ -19,6 +19,9 @@ const LayoutStyles = styled.div`
   background-color: ${props => props.theme.palette.background};
   padding-top: 65px;
   padding-bottom: 80px;
+  ${props => props.theme.breakpoints.up('sm')} {
+    padding-bottom: 10px;
+  }
 `
 
 const Layout: React.FC = ({ children }) => {

@@ -5,10 +5,11 @@ import PictureSlide from './pictureSlide'
 const AboutStyles = styled.section`
   padding: 0px 25px;
   margin: 50px auto;
-  max-width: 400px;
+  max-width: 600px;
   justify-content: center;
   align-items: center;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 25px 50px;
   grid-template:
     'title'
@@ -17,10 +18,8 @@ const AboutStyles = styled.section`
   .gatsby-image-wrapper {
     margin: 0 15vw;
   }
-  ${props => props.theme.breakpoints.up('sm')} {
-    /* max-width: 800px; */
-  }
   ${props => props.theme.breakpoints.up('md')} {
+    display: grid;
     max-width: 1000px;
     margin: 100px auto;
     padding: 0 100px;
@@ -30,6 +29,7 @@ const AboutStyles = styled.section`
     grid-template-columns: 1fr 3fr;
     .gatsby-image-wrapper {
       margin: 0;
+      max-width: 250px;
     }
   }
 `

@@ -19,7 +19,7 @@ const IconContainerStyles = styled.div`
     rgb(0 0 0 / 9%) 0px -3px 5px;
   svg {
     ${IconButton}
-    ${props => props.theme.breakpoints.up('sm')} {
+    ${props => props.theme.breakpoints.up('md')} {
       :hover {
         color: ${props => props.theme.palette.primary.contrast};
         fill: ${props => props.theme.palette.primary.contrast};
@@ -29,14 +29,14 @@ const IconContainerStyles = styled.div`
   a {
     position: relative;
     transition: bottom ease-in 300ms;
-    ${props => props.theme.breakpoints.up('sm')} {
+    ${props => props.theme.breakpoints.up('md')} {
       :focus,
       :hover {
         bottom: 5px;
       }
     }
   }
-  ${props => props.theme.breakpoints.up('sm')} {
+  ${props => props.theme.breakpoints.up('md')} {
     width: 40px;
     background-color: transparent;
     display: block;
@@ -47,28 +47,35 @@ const IconContainerStyles = styled.div`
   }
 `
 
+export const socialLinks = [
+  {
+    name: 'linkedin',
+    src: 'https://www.linkedin.com/in/jonshuang/',
+    icon: <FaLinkedin />,
+  },
+  {
+    name: 'github',
+    src: 'https://github.com/jhuan015',
+    icon: <FaGithub />,
+  },
+  {
+    name: 'instagram',
+    src: 'https://www.instagram.com/joncaekk/',
+    icon: <FaInstagram />,
+  },
+]
+
 const IconNav: React.FC = () => {
   return (
     <IconContainerStyles>
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href="https://www.linkedin.com/in/jonshuang/"
-      >
-        <FaLinkedin />
-      </a>
-      <a target="_blank" rel="noreferrer" href="https://github.com/jhuan015">
-        <FaGithub />
-      </a>
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href="https://www.instagram.com/joncaekk/"
-      >
-        <FaInstagram />
-      </a>
+      {socialLinks.map(social => (
+        <a target="_blank" rel="noreferrer" href={social.src} key={social.name}>
+          {social.icon}
+        </a>
+      ))}
     </IconContainerStyles>
   )
 }
 
 export default IconNav
+// FIX STYLES FOR MEDIUM BOTTOM ICON NAV

@@ -14,11 +14,15 @@ interface Props {
   lang?: string
   meta?: HTMLMetaElement
   title?: string
+  image?: string
+  location?: Location
 }
 
 const SEO: React.FC<Props> = ({
   description,
+  image,
   lang = 'en',
+  location = window.location,
   meta = [],
   title,
 }) => {
@@ -62,6 +66,22 @@ const SEO: React.FC<Props> = ({
         {
           property: 'og:type',
           content: 'website',
+        },
+        {
+          property: 'og:image',
+          content: image || '/logo.svg',
+        },
+        {
+          property: 'og:site_name',
+          content: defaultTitle,
+        },
+        {
+          property: 'og:url',
+          content: location.href,
+        },
+        {
+          property: 'viewport',
+          content: 'width=device-width, initial-scale=1.0',
         },
         {
           name: 'twitter:card',
