@@ -1,12 +1,18 @@
 import styled, { css } from 'styled-components'
 
-export const IconStyles = css`
+export const ContrastIconButton = css`
   height: 25px;
   width: 25px;
   padding: 10px;
+  cursor: pointer;
+  :focus,
+  :hover {
+    color: ${props => props.theme.palette.primary.contrast};
+    fill: ${props => props.theme.palette.primary.contrast};
+  }
 `
 
-export const IconButton = css`
+export const DarkIconButton = css`
   height: 25px;
   width: 25px;
   padding: 10px;

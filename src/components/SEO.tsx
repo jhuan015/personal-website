@@ -22,7 +22,7 @@ const SEO: React.FC<Props> = ({
   description,
   image,
   lang = 'en',
-  location = window.location,
+  location,
   meta = [],
   title,
 }) => {
@@ -34,12 +34,12 @@ const SEO: React.FC<Props> = ({
             title
             description
             author
+            siteUrl
           }
         }
       }
     `
   )
-
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
@@ -77,7 +77,7 @@ const SEO: React.FC<Props> = ({
         },
         {
           property: 'og:url',
-          content: location.href,
+          content: location?.href ?? site.siteMetadata?.siteUrl,
         },
         {
           property: 'viewport',

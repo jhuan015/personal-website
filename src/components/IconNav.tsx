@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
-import { IconButton } from '../styles/CommonStyles'
+import { ContrastIconButton, DarkIconButton } from '../styles/CommonStyles'
 
 const IconContainerStyles = styled.div`
   position: fixed;
@@ -18,12 +18,9 @@ const IconContainerStyles = styled.div`
     rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
     rgb(0 0 0 / 9%) 0px -3px 5px;
   svg {
-    ${IconButton}
+    ${DarkIconButton}
     ${props => props.theme.breakpoints.up('md')} {
-      :hover {
-        color: ${props => props.theme.palette.primary.contrast};
-        fill: ${props => props.theme.palette.primary.contrast};
-      }
+      ${ContrastIconButton}
     }
   }
   a {
@@ -78,4 +75,3 @@ const IconNav: React.FC = () => {
 }
 
 export default IconNav
-// FIX STYLES FOR MEDIUM BOTTOM ICON NAV

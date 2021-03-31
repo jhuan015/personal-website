@@ -4,7 +4,7 @@ import { MdClear, MdMenu } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import { IconButton } from '../styles/CommonStyles'
+import { DarkIconButton } from '../styles/CommonStyles'
 
 const HeaderStyles = styled.header`
   background: ${props => props.theme.palette.primary.light};
@@ -14,12 +14,7 @@ const HeaderStyles = styled.header`
   width: 100%;
   z-index: 1;
   svg {
-    ${IconButton};
-    :focus,
-    :hover {
-      color: ${props => props.theme.palette.primary.dark};
-      fill: ${props => props.theme.palette.primary.dark};
-    }
+    ${DarkIconButton};
   }
   li {
     :focus,
@@ -128,19 +123,19 @@ interface Props {
 
 const Links: React.FC = () => (
   <>
-    <a href="#about">
+    <a href="/#about">
       <li>About</li>
     </a>
-    <a href="#experience">
+    <a href="/#experience">
       <li>Experience</li>
     </a>
-    <a href="#projects">
+    <a href="/#projects">
       <li>Projects</li>
     </a>
     <a href="/blog">
       <li>Blog</li>
     </a>
-    <a href="#contact">
+    <a href="/#contact">
       <li>Contact</li>
     </a>
     <a id="resume" href="/Jonathan Huang - Resume.pdf">
