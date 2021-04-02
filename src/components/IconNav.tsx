@@ -4,6 +4,32 @@ import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { ContrastIconButton, DarkIconButton } from '../styles/CommonStyles'
 
 const IconContainerStyles = styled.div`
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 40px;
+  background-color: transparent;
+  bottom: 45%;
+  left: 20px;
+  right: auto;
+  box-shadow: none;
+  svg {
+    ${ContrastIconButton}
+  }
+  a {
+    position: relative;
+    transition: bottom ease-in 300ms;
+    :focus,
+    :hover {
+      bottom: 5px;
+    }
+  }
+  ${props => props.theme.breakpoints.up('md')} {
+    display: block;
+  }
+`
+
+const MobileBottomNavStyles = styled.div`
   position: fixed;
   bottom: 0;
   right: 0;
@@ -19,28 +45,9 @@ const IconContainerStyles = styled.div`
     rgb(0 0 0 / 9%) 0px -3px 5px;
   svg {
     ${DarkIconButton}
-    ${props => props.theme.breakpoints.up('md')} {
-      ${ContrastIconButton}
-    }
-  }
-  a {
-    position: relative;
-    transition: bottom ease-in 300ms;
-    ${props => props.theme.breakpoints.up('md')} {
-      :focus,
-      :hover {
-        bottom: 5px;
-      }
-    }
   }
   ${props => props.theme.breakpoints.up('md')} {
-    width: 40px;
-    background-color: transparent;
-    display: block;
-    bottom: 45%;
-    left: 20px;
-    right: auto;
-    box-shadow: none;
+    display: none;
   }
 `
 
@@ -62,16 +69,26 @@ export const socialLinks = [
   },
 ]
 
-const IconNav: React.FC = () => {
-  return (
-    <IconContainerStyles>
-      {socialLinks.map(social => (
-        <a target="_blank" rel="noreferrer" href={social.src} key={social.name}>
-          {social.icon}
-        </a>
-      ))}
-    </IconContainerStyles>
-  )
-}
+// Side icon nav menu
+export const SideIconNav: React.FC = () => (
+  <IconContainerStyles>
+    {socialLinks.map(social => (
+      <a target="_blank" rel="noreferrer" href={social.src} key={social.name}>
+        {social.icon}
+      </a>
+    ))}
+  </IconContainerStyles>
+)
 
-export default IconNav
+// Mobile bottom nav menu
+const MobileBottomNav: React.FC = () => (
+  <MobileBottomNavStyles>
+    {socialLinks.map(social => (
+      <a target="_blank" rel="noreferrer" href={social.src} key={social.name}>
+        {social.icon}
+      </a>
+    ))}
+  </MobileBottomNavStyles>
+)
+
+export default MobileBottomNav

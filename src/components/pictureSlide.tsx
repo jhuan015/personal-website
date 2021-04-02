@@ -12,7 +12,7 @@ const PictureSlide: React.FC = () => {
   const [index, setIndex] = useState(0)
   const data: Query = useStaticQuery(graphql`
     query {
-      allFile(filter: { relativeDirectory: { eq: "bg" } }) {
+      allFile(filter: { relativeDirectory: { eq: "me" } }) {
         edges {
           node {
             id

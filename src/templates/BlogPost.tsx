@@ -1,15 +1,14 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import BlockContent from '@sanity/block-content-to-react'
 import { formatDistance } from 'date-fns'
 import styled, { css } from 'styled-components'
-import { IoMdArrowBack } from 'react-icons/io'
 import { Query } from '../../graphql-types'
 import Figure from '../components/Figure'
-import { ContrastIconButton, DarkIconButton } from '../styles/CommonStyles'
 import SEO from '../components/SEO'
-import IconNav, { socialLinks } from '../components/IconNav'
+import IconNav from '../components/IconNav'
+import AuthorSidePanel from '../components/AuthorSidePanel'
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
@@ -62,7 +61,7 @@ const ContainerStyles = css`
   margin: 0 auto;
   padding: 16px 32px;
   ${props => props.theme.breakpoints.up('lg')} {
-    max-width: 80vw;
+    max-width: 90vw;
   }
 `
 
@@ -89,70 +88,10 @@ const BlogPostStyles = styled.article`
   }
 `
 
-const SidePanel = styled.aside`
+const AuthorSidePanelStyles = styled(AuthorSidePanel)`
   display: none;
-  height: 60vh;
-  position: sticky;
-  top: 69px;
-  left: 0;
   ${props => props.theme.breakpoints.up('md')} {
     display: block;
-  }
-`
-
-const LinkStyles = styled(Link)`
-  display: flex;
-  align-items: center;
-  transition: transform 250ms;
-  svg {
-    ${DarkIconButton}
-    padding: 5px;
-  }
-  :hover {
-    transform: translateY(-5px);
-    svg {
-      transform: translateX(-5px);
-      fill: ${props => props.theme.palette.primary.dark};
-    }
-  }
-`
-
-const NavContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  background-color: ${props => props.theme.palette.primary.light};
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  padding: 25px;
-  margin: 15px;
-  .gatsby-image-wrapper {
-    padding: 30px;
-    margin: 30px;
-    overflow: visible;
-    & [data-main-image] {
-      border-radius: 50%;
-      border: 4px solid ${props => props.theme.palette.primary.dark};
-    }
-  }
-  nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    p {
-      text-align: center;
-    }
-  }
-  ul {
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    svg {
-      ${ContrastIconButton};
-    }
   }
 `
 
@@ -270,36 +209,21 @@ const BlogPost: React.FC<Props> = props => {
         </MobileAuthor>
       </MobileHeader>
       <BlogPostStyles>
-        <SidePanel>
-          <nav>
-            <NavContainer>
-              <LinkStyles to="/blog">
-                <IoMdArrowBack /> Back to Blog
-              </LinkStyles>
-              <h1>{post?.title}</h1>
-              <p>Published: {publishedDate}</p>
-              {updatedDate && <p>Updated: {updatedDate}</p>}
-            </NavContainer>
-            <NavContainer>
-              {authorImage}
-              <h3>Hi! I&apos;m Jonathan</h3>
-              <p>
-                {' '}
-                I&apos;m a software engineer based in Irvine, CA specializing in
-                front end development.
-              </p>
-              <ul>
-                {socialLinks.map(social => (
-                  <li key={social.name}>
-                    <a target="_blank" rel="noreferrer" href={social.src}>
-                      {social.icon}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </NavContainer>
-          </nav>
-        </SidePanel>
+        <AuthorSidePanelStyles
+          authorImageAlt={
+            post?.author?.image?.asset?.altText ?? 'Jonathan Huang Image'
+          }
+          authorImageSrc={post?.author?.image?.asset?.gatsbyImageData}
+          backHref="/blog"
+          backText="Back to Blog"
+          subtitle={
+            <>
+              <p>{`Published ${publishedDate}`}</p>
+              {updatedDate && <p>{`Updated: ${updatedDate}`}</p>}
+            </>
+          }
+          title={<h1>{post?.title}</h1>}
+        />
         <ArticleContent>
           <Title>{post?.title}</Title>
           <BlockContent

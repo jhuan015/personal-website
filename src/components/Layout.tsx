@@ -13,6 +13,7 @@ import 'normalize.css'
 import './layout.css'
 import GlobalStyles from '../styles/GlobalStyles'
 import styled from 'styled-components'
+import MobileBottomNav from './IconNav'
 
 const LayoutStyles = styled.div`
   min-height: 90vh;
@@ -46,6 +47,7 @@ const Layout: React.FC = ({ children }) => {
             © Jonathan S Huang {new Date().getFullYear()}
           </footer>
         </div>
+        <MobileBottomNav />
       </LayoutStyles>
     </>
   )

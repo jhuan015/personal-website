@@ -36,6 +36,11 @@ const ButtonStyles = css`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
 
+export const DashedFocus = css`
+  outline: ${props => props.theme.palette.text.primary} 2px dashed;
+  outline-offset: 2px;
+`
+
 export const FilledButton = styled.a`
   ${ButtonStyles}
   background-color: ${props => props.theme.palette.primary.contrast};
@@ -47,7 +52,7 @@ export const FilledButton = styled.a`
     opacity: 0.7;
   }
   :focus {
-    outline: ${props => props.theme.palette.text.primary} 2px dashed;
+    ${DashedFocus}
   }
 `
 
@@ -63,6 +68,6 @@ export const OutlinedButton = styled.a`
     background-color: ${props => props.theme.palette.primary.contrast};
   }
   :focus {
-    outline: ${props => props.theme.palette.text.primary} 2px dashed;
+    ${DashedFocus}
   }
 `

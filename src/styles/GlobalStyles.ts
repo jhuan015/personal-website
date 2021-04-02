@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import font from '../assets/fonts/Montserrat/Montserrat-Regular.woff'
+import { DashedFocus } from './CommonStyles'
 import { ThemeType } from './theme'
 
 const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
@@ -28,7 +29,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
       color: ${props => props.theme.palette.primary.dark};
     }
     :focus {
-      outline: ${props => props.theme.palette.text.primary} 2px dashed;
+      ${DashedFocus}
     }
     li {
       :hover {
