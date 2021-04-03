@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { MdClear, MdMenu } from 'react-icons/md'
-import { CgFileDocument } from 'react-icons/cg'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import { DarkIconButton } from '../styles/CommonStyles'
+import { DarkIconButton, FilledButton } from '../styles/CommonStyles'
+
+const FilledButtonStyles = styled(FilledButton)`
+  margin: 0 10px;
+  padding: 8px 16px;
+`
 
 const HeaderStyles = styled.header`
   background: ${props => props.theme.palette.primary.light};
@@ -12,7 +16,7 @@ const HeaderStyles = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
   svg {
     ${DarkIconButton};
   }
@@ -102,7 +106,7 @@ const GreyContainer = styled.div<{ $display: boolean }>`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 1;
+  z-index: 9;
   cursor: pointer;
 `
 
@@ -114,7 +118,7 @@ const Panel = styled.div`
   height: 100vh;
   background-color: ${props => props.theme.palette.primary.light};
   box-shadow: rgba(0, 0, 0, 0.22) 0px 11px 23px 5px;
-  z-index: 2;
+  z-index: 10;
 `
 
 interface Props {
@@ -135,12 +139,9 @@ const Links: React.FC = () => (
     <a href="/blog">
       <li>Blog</li>
     </a>
-    <a href="/#contact">
-      <li>Contact</li>
-    </a>
-    <a id="resume" href="/Jonathan Huang - Resume.pdf">
-      <CgFileDocument />
-    </a>
+    <FilledButtonStyles href="mailto:jhuan015@ucr.edu?subject=Hi there">
+      Contact Me
+    </FilledButtonStyles>
   </>
 )
 

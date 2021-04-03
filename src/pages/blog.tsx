@@ -12,9 +12,9 @@ const PostContainer = styled.div`
   display: block;
   background-color: ${props => props.theme.palette.primary.light};
   transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
-  box-shadow: 0 0 0 rgb(0 0 0 / 0%);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   border-radius: 10px;
-  opacity: 0.9;
   height: 350px;
   & [data-gatsby-image-wrapper] {
     border-top-left-radius: 10px;
@@ -23,7 +23,6 @@ const PostContainer = styled.div`
   }
   :hover {
     transform: translateX(-7px);
-    box-shadow: 1px 2px 10px rgb(0 0 0 / 18%);
   }
 `
 
@@ -34,10 +33,38 @@ const PostContent = styled.div`
   }
 `
 
+const HeroImageStyles = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  [data-gatsby-image-wrapper] {
+    height: 400px;
+    width: 100%;
+    :before {
+      z-index: 1;
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+  h1 {
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    text-align: center;
+  }
+`
+
 const BlogStyles = styled.article`
   display: block;
   max-width: 100vw;
-  margin: 0 auto;
+  margin: -100px auto 0;
   padding: 16px 32px;
   ${props => props.theme.breakpoints.up('md')} {
     display: grid;
@@ -51,10 +78,21 @@ const BlogStyles = styled.article`
 
 const BlogPostContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
+  align-items: center;
   margin-top: 10px;
-  align-items: flex-end;
+  a {
+    z-index: 2;
+  }
+  ${props => props.theme.breakpoints.up('sm')} {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 1fr 1fr;
+  }
+  ${props => props.theme.breakpoints.up('lg')} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `
 
 interface Props {
@@ -63,7 +101,7 @@ interface Props {
 const BlogPage: React.FC<Props> = ({ data }) => {
   const blogPosts = data.allSanityPost.nodes.map(post => (
     <Link key={post.id} to={`/blog/${post.slug?.current}`}>
-      <PostContainer className="postContainer">
+      <PostContainer>
         <GatsbyImage
           image={post.mainImage?.asset?.gatsbyImageData}
           alt={post.mainImage?.asset?.title ?? 'Blog Post'}
@@ -83,11 +121,22 @@ const BlogPage: React.FC<Props> = ({ data }) => {
     </Link>
   ))
 
+  const heroImage = (
+    <HeroImageStyles>
+      <GatsbyImage
+        image={data.allFile.edges[0].node.childImageSharp?.gatsbyImageData}
+        alt={data.allFile.edges[0].node.name ?? 'Blog Hero Image'}
+      />
+      <h1>Blog Posts</h1>
+    </HeroImageStyles>
+  )
+
   return (
     <>
       <SEO title="Blog" />
       {/* Replace with author side panel?? */}
       <IconNav />
+      {heroImage}
       <BlogStyles>
         <AuthorSidePanel
           authorImageAlt={
@@ -100,10 +149,7 @@ const BlogPage: React.FC<Props> = ({ data }) => {
           backText="To Homepage"
           title={<h1>Blog Posts</h1>}
         />
-        <div>
-          <h1>Blog Posts</h1>
-          <BlogPostContainer>{blogPosts}</BlogPostContainer>
-        </div>
+        <BlogPostContainer>{blogPosts}</BlogPostContainer>
       </BlogStyles>
     </>
   )
@@ -146,6 +192,19 @@ export const query = graphql`
         excerpt
         title
         publishedAt
+      }
+    }
+    allFile(filter: { name: { eq: "bloghero" } }) {
+      edges {
+        node {
+          childImageSharp {
+            gatsbyImageData(
+              placeholder: DOMINANT_COLOR
+              height: 300
+              layout: FULL_WIDTH
+            )
+          }
+        }
       }
     }
   }

@@ -7,6 +7,7 @@ import { socialLinks } from './IconNav'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 const SidePanelStyles = styled.aside`
+  z-index: 2;
   display: none;
   height: 60vh;
   position: sticky;
@@ -21,6 +22,7 @@ const LinkStyles = styled(Link)`
   display: flex;
   align-items: center;
   transition: transform 250ms;
+  margin: 10px;
   svg {
     ${DarkIconButton}
     padding: 5px;
@@ -93,11 +95,11 @@ const AuthorSidePanel: React.FC<Props> = ({
     <SidePanelStyles>
       <nav>
         <NavContainer>
+          {title}
+          {subtitle}
           <LinkStyles to={backHref}>
             <IoMdArrowBack /> {backText}
           </LinkStyles>
-          {title}
-          {subtitle}
         </NavContainer>
         <NavContainer>
           <GatsbyImage alt={authorImageAlt} image={authorImageSrc} />

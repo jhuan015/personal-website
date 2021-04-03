@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { ContrastIconButton, DarkIconButton } from '../styles/CommonStyles'
+import { CgFileDocument } from 'react-icons/cg'
 
 const IconContainerStyles = styled.div`
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   width: 40px;
   background-color: transparent;
   bottom: 45%;
@@ -39,7 +40,7 @@ const MobileBottomNavStyles = styled.div`
   align-items: center;
   height: 60px;
   background-color: ${props => props.theme.palette.primary.light};
-  z-index: 1;
+  z-index: 10;
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
     rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
     rgb(0 0 0 / 9%) 0px -3px 5px;
@@ -66,6 +67,11 @@ export const socialLinks = [
     name: 'instagram',
     src: 'https://www.instagram.com/joncaekk/',
     icon: <FaInstagram />,
+  },
+  {
+    name: 'resume',
+    src: '/Jonathan Huang - Resume.pdf',
+    icon: <CgFileDocument />,
   },
 ]
 
