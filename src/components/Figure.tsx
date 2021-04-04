@@ -23,8 +23,8 @@ const Figure: React.FC<Props> = ({ node }) => {
       layout: 'constrained',
     },
     {
-      projectId: process.env.GATSBY_SANITY_PROJECT_ID ?? '',
-      dataset: process.env.GATSBY_SANITY_PROJECT_DATASET ?? '',
+      projectId: process.env.GATSBY_SANITY_PROJECT_ID ?? 'kb6eepmw',
+      dataset: process.env.GATSBY_SANITY_PROJECT_DATASET ?? 'production',
     }
   )
   return (

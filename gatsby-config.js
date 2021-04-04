@@ -60,7 +60,7 @@ module.exports = {
         projectId: 'kb6eepmw',
         dataset: 'production',
         token: process.env.SANITY_TOKEN,
-        watchMode: true,
+        // watchMode: true,
         apiVersion: '2021-03-25',
       },
     },
