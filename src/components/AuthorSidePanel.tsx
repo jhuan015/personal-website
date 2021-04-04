@@ -50,6 +50,8 @@ const NavContainer = styled.div`
     padding: 30px;
     margin: 30px;
     overflow: visible;
+    width: 100%;
+    max-width: 100px;
     & [data-main-image] {
       border-radius: 50%;
       border: 4px solid ${props => props.theme.palette.primary.dark};
@@ -104,7 +106,7 @@ const AuthorSidePanel: React.FC<Props> = ({
         <NavContainer>
           <GatsbyImage alt={authorImageAlt} image={authorImageSrc} />
           <h3>Hi, I&apos;m Jonathan!</h3>
-          <p>
+          <p className="center">
             {' '}
             I&apos;m a software engineer based in Irvine, CA specializing in
             front end development.

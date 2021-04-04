@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import MobileBottomNav from './IconNav'
 
 const LayoutStyles = styled.div`
-  min-height: 100vh;
+  min-height: 120vh;
   background-color: ${props => props.theme.palette.background};
   padding-top: 58px;
   padding-bottom: 80px;

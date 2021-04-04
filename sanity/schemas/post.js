@@ -35,7 +35,7 @@ export default {
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
-      description: 'Short excert about this post',
+      description: 'Short excerpt about this post',
     },
     {
       name: 'body',

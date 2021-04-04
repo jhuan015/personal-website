@@ -15,7 +15,7 @@ const PostContainer = styled.div`
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   border-radius: 10px;
-  height: 350px;
+  height: 400px;
   & [data-gatsby-image-wrapper] {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -40,7 +40,7 @@ const HeroImageStyles = styled.div`
   align-items: center;
   justify-content: center;
   [data-gatsby-image-wrapper] {
-    height: 400px;
+    height: 300px;
     width: 100%;
     :before {
       z-index: 1;
@@ -51,6 +51,9 @@ const HeroImageStyles = styled.div`
       top: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.1);
+    }
+    ${props => props.theme.breakpoints.up('md')} {
+      height: 400px;
     }
   }
   h1 {
@@ -84,6 +87,7 @@ const BlogPostContainer = styled.div`
   margin-top: 10px;
   a {
     z-index: 2;
+    outline-offset: 7px;
   }
   ${props => props.theme.breakpoints.up('sm')} {
     display: grid;
@@ -134,7 +138,6 @@ const BlogPage: React.FC<Props> = ({ data }) => {
   return (
     <>
       <SEO title="Blog" />
-      {/* Replace with author side panel?? */}
       <IconNav />
       {heroImage}
       <BlogStyles>
@@ -165,7 +168,7 @@ export const query = graphql`
           image {
             asset {
               _id
-              gatsbyImageData(width: 100, placeholder: DOMINANT_COLOR)
+              gatsbyImageData(width: 160, placeholder: DOMINANT_COLOR)
             }
           }
           name
@@ -175,7 +178,6 @@ export const query = graphql`
           asset {
             gatsbyImageData(
               placeholder: DOMINANT_COLOR
-              # width: 300
               layout: FULL_WIDTH
               aspectRatio: 1.50
             )

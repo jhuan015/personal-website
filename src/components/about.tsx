@@ -48,6 +48,13 @@ const PictureSlideStyles = styled(PictureSlide)`
 
 const DetailsStyles = styled.div`
   grid-area: details;
+  a {
+    :focus,
+    :hover {
+      color: ${props => props.theme.palette.primary.contrast};
+      fill: ${props => props.theme.palette.primary.contrast};
+    }
+  }
 `
 
 const About: React.FC = () => {
@@ -64,9 +71,12 @@ const About: React.FC = () => {
         </p>
         <p>
           I currently work for Verys on the Zenimax player experience team. We
-          craft digital marketing experiences for the Bethesda.net digital
-          platform for gaming brands such as Fallout, Elder Scrolls, DOOM, and
-          Wolfenstein.
+          craft digital marketing experiences for the{' '}
+          <a target="_blank" rel="noreferrer" href="https://bethesda.net">
+            <b>Bethesda.net</b>
+          </a>{' '}
+          digital platform for gaming brands such as Fallout, Elder Scrolls,
+          DOOM, and Wolfenstein.
         </p>
         <p>
           I graduated from the University of California Riverside in 2011 with a

@@ -111,6 +111,7 @@ const MobileTitle = styled.h1`
 
 const Title = styled.h1`
   display: none;
+  text-align: center;
   ${LargeTextStyles}
   ${props => props.theme.breakpoints.up('md')} {
     display: block;
@@ -120,6 +121,9 @@ const Title = styled.h1`
 const ArticleContent = styled.div`
   max-width: 1000px;
   margin: 0 auto;
+  p {
+    margin: 30px 0;
+  }
 `
 
 const MobileAuthor = styled.div`
@@ -222,7 +226,7 @@ const BlogPost: React.FC<Props> = props => {
               {updatedDate && <p>{`Updated: ${updatedDate}`}</p>}
             </>
           }
-          title={<h1>{post?.title}</h1>}
+          title={<h1 className="center">{post?.title}</h1>}
         />
         <ArticleContent>
           <Title>{post?.title}</Title>

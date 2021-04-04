@@ -153,8 +153,12 @@ const VerysTab: React.FC = () => (
       <ul>
         <li>
           Crafted digital marketing experiences, UI’s for user generated
-          content, and store web UI’s for the Bethesda.net digital platform and
-          gaming brands such as Fallout, Elder Scrolls, DOOM, and Wolfenstein.
+          content, and store web UI’s for the{' '}
+          <a target="_blank" rel="noreferrer" href="https://bethesda.net">
+            <b>Bethesda.net</b>
+          </a>{' '}
+          digital platform and gaming brands such as Fallout, Elder Scrolls,
+          DOOM, and Wolfenstein.
         </li>
         <li>
           Engineered React web apps and reusable component libraries to serve
