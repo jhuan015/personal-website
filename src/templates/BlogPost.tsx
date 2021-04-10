@@ -6,6 +6,7 @@ import { formatDistance } from 'date-fns'
 import styled, { css } from 'styled-components'
 import { Query } from '../../graphql-types'
 import Figure from '../components/Figure'
+import Code from '../components/Code'
 import SEO from '../components/SEO'
 import IconNav from '../components/IconNav'
 import AuthorSidePanel from '../components/AuthorSidePanel'
@@ -53,6 +54,7 @@ export const query = graphql`
 const serializers = {
   types: {
     image: Figure,
+    code: Code,
   },
 }
 
@@ -110,9 +112,10 @@ const MobileTitle = styled.h1`
 `
 
 const Title = styled.h1`
+  ${LargeTextStyles}
   display: none;
   text-align: center;
-  ${LargeTextStyles}
+  margin: 30px 0;
   ${props => props.theme.breakpoints.up('md')} {
     display: block;
   }
@@ -122,7 +125,15 @@ const ArticleContent = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   p {
-    margin: 30px 0;
+    margin: 15px 0;
+  }
+  a {
+    :hover {
+      color: ${props => props.theme.palette.primary.contrast};
+    }
+  }
+  ${props => props.theme.breakpoints.up('md')} {
+    max-width: 50vw;
   }
 `
 

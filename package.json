@@ -5,6 +5,7 @@
   "author": "Jonathan Huang <jhuan015@ucr.edu>",
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
+    "@types/react-syntax-highlighter": "^13.5.0",
     "animejs": "^3.2.1",
     "clsx": "^1.1.1",
     "date-fns": "^2.19.0",
@@ -28,6 +29,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
+    "react-syntax-highlighter": "^15.4.3",
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.2.1"
   },
