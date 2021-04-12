@@ -1,6 +1,7 @@
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { getGatsbyImageData } from 'gatsby-source-sanity'
+import sanityConfig from '../sanityConfig'
 
 interface Props {
   node: {
@@ -22,10 +23,7 @@ const Figure: React.FC<Props> = ({ node }) => {
       placeholder: 'dominantColor',
       layout: 'constrained',
     },
-    {
-      projectId: process.env.GATSBY_SANITY_PROJECT_ID ?? 'kb6eepmw',
-      dataset: process.env.GATSBY_SANITY_PROJECT_DATASET ?? 'production',
-    }
+    sanityConfig
   )
   return (
     <figure>

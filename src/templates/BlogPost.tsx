@@ -10,6 +10,7 @@ import Code from '../components/Code'
 import SEO from '../components/SEO'
 import IconNav from '../components/IconNav'
 import AuthorSidePanel from '../components/AuthorSidePanel'
+import sanityConfig from '../sanityConfig'
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
@@ -24,11 +25,12 @@ export const query = graphql`
       mainImage {
         asset {
           gatsbyImageData(
-            aspectRatio: 1.3333
-            height: 300
+            aspectRatio: 1.7
             placeholder: DOMINANT_COLOR
             formats: [AUTO, WEBP, AVIF]
             layout: FULL_WIDTH
+            fit: CROP
+            breakpoints: [600, 960, 1280, 1920]
           )
           altText
         }
@@ -74,9 +76,9 @@ const LargeTextStyles = css`
 `
 
 const HeroImage = styled(GatsbyImage)`
-  height: 300px;
+  height: 200px;
   ${props => props.theme.breakpoints.up('md')} {
-    height: auto;
+    height: 300px;
   }
 `
 
@@ -211,6 +213,7 @@ const BlogPost: React.FC<Props> = props => {
         key={post?.id}
         alt={post?.mainImage?.asset?.altText ?? `${post?.title} main image`}
         image={post?.mainImage?.asset?.gatsbyImageData}
+        loading="eager"
       />
       <MobileHeader>
         <MobileTitle>{post?.title}</MobileTitle>
@@ -244,8 +247,7 @@ const BlogPost: React.FC<Props> = props => {
           <BlockContent
             blocks={post?._rawBody}
             serializers={serializers}
-            projectId={process.env.GATSBY_SANITY_PROJECT_ID}
-            dataset={process.env.GATSBY_SANITY_PROJECT_DATASET}
+            {...sanityConfig}
           />
         </ArticleContent>
       </BlogPostStyles>
