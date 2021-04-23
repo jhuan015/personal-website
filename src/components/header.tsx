@@ -133,9 +133,9 @@ const Links: React.FC = () => (
     <a href="/#experience">
       <li>Experience</li>
     </a>
-    <a href="/#projects">
+    {/* <a href="/#projects">
       <li>Projects</li>
-    </a>
+    </a> */}
     <a href="/blog">
       <li>Blog</li>
     </a>
