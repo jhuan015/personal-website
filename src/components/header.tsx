@@ -4,6 +4,7 @@ import { MdClear, MdMenu } from 'react-icons/md'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import { DarkIconButton, FilledButton } from '../styles/CommonStyles'
+import useLockBodyScroll from '../hooks/useLockBodyScroll'
 
 const FilledButtonStyles = styled(FilledButton)`
   margin: 0 10px;
@@ -116,7 +117,7 @@ const Panel = styled.div`
   right: 0;
   width: 50vw;
   height: 100vh;
-  background-color: ${props => props.theme.palette.primary.light};
+  background-color: ${props => props.theme.palette.primary.main};
   box-shadow: rgba(0, 0, 0, 0.22) 0px 11px 23px 5px;
   z-index: 10;
 `
@@ -145,6 +146,18 @@ const Links: React.FC = () => (
   </>
 )
 
+const MobileHeader: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  useLockBodyScroll()
+  return (
+    <Panel>
+      <MobileClearMenuIcon onClick={() => onClose()} />
+      <MobileNavLinkStyles>
+        <Links />
+      </MobileNavLinkStyles>
+    </Panel>
+  )
+}
+
 const Header: React.FC<Props> = () => {
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -165,12 +178,7 @@ const Header: React.FC<Props> = () => {
           classNames="menu"
           timeout={300}
         >
-          <Panel>
-            <MobileClearMenuIcon onClick={() => setOpenMenu(false)} />
-            <MobileNavLinkStyles>
-              <Links />
-            </MobileNavLinkStyles>
-          </Panel>
+          <MobileHeader onClose={() => setOpenMenu(false)} />
         </CSSTransition>
       </NavStyles>
       <GreyContainer $display={openMenu} onClick={() => setOpenMenu(false)} />

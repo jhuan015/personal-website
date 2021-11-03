@@ -5,8 +5,7 @@ import VerysSVG from '../assets/images/svg/verys.svg'
 import EvisionsSVG from '../assets/images/svg/evisions.svg'
 import JsqSVG from '../assets/images/svg/jsq.svg'
 import { breakpoints } from '../styles/theme'
-
-const isBrowser = typeof window !== 'undefined'
+import { isBrowser } from '../utils'
 
 const ExpedienceStyles = styled.section`
   display: grid;
