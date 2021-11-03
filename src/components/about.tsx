@@ -70,13 +70,12 @@ const About: React.FC = () => {
           databases.
         </p>
         <p>
-          I currently work for Verys on the Zenimax player experience team. We
-          craft digital marketing experiences for the{' '}
-          <a target="_blank" rel="noreferrer" href="https://bethesda.net">
-            <b>Bethesda.net</b>
+          I currently work for{' '}
+          <a target="_blank" rel="noreferrer" href="https://junipersquare.com">
+            <b>Juniper Square</b>
           </a>{' '}
-          digital platform for gaming brands such as Fallout, Elder Scrolls,
-          DOOM, and Wolfenstein.
+          on the documents team. We faciliate easier ways to compose emails and
+          generating PDFs to enhance document workflows.
         </p>
         <p>
           I graduated from the University of California Riverside in 2011 with a

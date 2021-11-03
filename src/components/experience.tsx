@@ -3,6 +3,8 @@ import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import VerysSVG from '../assets/images/svg/verys.svg'
 import EvisionsSVG from '../assets/images/svg/evisions.svg'
+import JsqSVG from '../assets/images/svg/jsq.svg'
+import { breakpoints } from '../styles/theme'
 
 const ExpedienceStyles = styled.section`
   display: grid;
@@ -35,7 +37,8 @@ const ExperienceHeaderStyles = styled.div`
       justify-content: normal;
     }
     li {
-      width: 33%;
+      height: 24px;
+      width: 25%;
       text-align: center;
       cursor: pointer;
       background-color: ${props => props.theme.palette.primary.contrast};
@@ -57,7 +60,7 @@ const ExperienceHeaderStyles = styled.div`
         }
       }
       ${props => props.theme.breakpoints.up('md')} {
-        width: 100px;
+        width: 150px;
       }
     }
   }
@@ -104,6 +107,11 @@ const TabContainer = styled.div`
   grid-template-columns: 1fr;
   gap: 30px;
   min-height: 400px;
+  a {
+    b {
+      color: ${props => props.theme.palette.primary.contrast};
+    }
+  }
   ul {
     list-style-type: none;
     padding: 0;
@@ -120,6 +128,9 @@ const TabContainer = styled.div`
   }
   h2 {
     margin-bottom: 10px;
+  }
+  h3 {
+    color: ${props => props.theme.palette.primary.contrast};
   }
   b {
     color: ${props => props.theme.palette.primary.dark};
@@ -141,6 +152,40 @@ const TabContainer = styled.div`
   }
 `
 
+const JsqTab: React.FC = () => (
+  <TabContainer>
+    <JsqSVG />
+    <div>
+      <h2>
+        Senior Software Engineer @{' '}
+        <a target="_blank" rel="noreferrer" href="https://junipersquare.com">
+          <b>Juniper Square</b>
+        </a>
+      </h2>
+      <h3>July 2021 - Present</h3>
+      <ul>
+        <li>
+          Juniper Square&apos;s mission is to mission is to make the world’s
+          private capital markets more efficient, transparent, and accessible.
+        </li>
+        <li>Extended the JSQ Outlook add-in to enable meeting integration.</li>
+        <li>
+          Build reusable and extendable React components, contributing to the
+          design system.
+        </li>
+        <li>
+          Worked with various technologies including React, TypeScript, Apollo
+          GraphQL, Styled-Components, React Testing Library, and AWS.
+        </li>
+        <li>
+          Collaborated and communicated with multi-disciplinary teams of
+          engineers, designers, producers on a daily basis.
+        </li>
+      </ul>
+    </div>
+  </TabContainer>
+)
+
 const VerysTab: React.FC = () => (
   <TabContainer>
     <VerysSVG />
@@ -151,7 +196,7 @@ const VerysTab: React.FC = () => (
           <b>Verys</b>
         </a>
       </h2>
-      <h3>July 2016 - Present</h3>
+      <h3>July 2016 - June 2021</h3>
       <ul>
         <li>
           Crafted digital marketing experiences, UI’s for user generated
@@ -251,21 +296,31 @@ const IRWDTab: React.FC = () => (
 
 const companyMap = [
   {
+    name: 'Juniper Square',
+    mobileName: 'JSQ',
+    component: <JsqTab />,
+  },
+  {
     name: 'Verys',
+    mobileName: 'Verys',
     component: <VerysTab />,
   },
   {
     name: 'Evisions',
+    mobileName: 'Evisions',
     component: <EvisionsTab />,
   },
   {
     name: 'IRWD',
+    mobileName: 'IRWD',
     component: <IRWDTab />,
   },
 ]
 
 const Experience: React.FC = () => {
   const [tab, setTab] = useState(0)
+  // Doesn't resize with a window resize but that's fine, could add a listener.
+  const isMobile = window.innerWidth < breakpoints.md
   const tabHeaders = useMemo(
     () =>
       companyMap.map((company, index) => (
@@ -274,10 +329,10 @@ const Experience: React.FC = () => {
           className={clsx(tab === index && 'active')}
           onClick={() => setTab(index)}
         >
-          <span>{company.name}</span>
+          <span>{isMobile ? company.mobileName : company.name}</span>
         </li>
       )),
-    [companyMap, tab]
+    [companyMap, tab, isMobile]
   )
 
   return (
