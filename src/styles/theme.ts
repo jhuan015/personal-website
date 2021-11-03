@@ -23,16 +23,19 @@ const theme = {
   },
   // TODO Split out into dark and light themes
   palette: {
-    background: '#27332F',
+    background: '#282a36',
     primary: {
-      light: '#51AFB0',
-      main: '#1F8DA3',
+      light: '#ff79c6',
+      main: '#6272a4',
       dark: '#27332F',
-      contrast: '#C7542F',
+      contrast: '#50fa7b',
     },
     text: {
-      primary: '#FFFFFF',
-      secondary: '#000000',
+      primary: '#bd93f9',
+      secondary: '#6272a4',
+      light: '#fff',
+      dark: '#27332F',
+      selection: '#44475a',
     },
   },
   type: 'dark',

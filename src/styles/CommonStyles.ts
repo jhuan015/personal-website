@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 export const ContrastIconButton = css`
   height: 25px;
   width: 25px;
-  padding: 10px;
   cursor: pointer;
   :focus,
   :hover {
@@ -45,7 +44,7 @@ export const FilledButton = styled.a`
   ${ButtonStyles}
   background-color: ${props => props.theme.palette.primary.contrast};
   && {
-    color: ${props => props.theme.palette.text.primary};
+    color: ${props => props.theme.palette.text.dark};
   }
   :hover,
   :focus {

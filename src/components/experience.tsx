@@ -42,11 +42,13 @@ const ExperienceHeaderStyles = styled.div`
       padding: 10px;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
+      color: ${props => props.theme.palette.text.dark};
       &:not(:last-child) {
         margin-right: 5px;
       }
       &.active {
-        background-color: ${props => props.theme.palette.primary.light};
+        color: ${props => props.theme.palette.text.primary};
+        background-color: ${props => props.theme.palette.primary.main};
       }
       :hover {
         span {
@@ -82,7 +84,7 @@ const MobileTitle = styled.h1`
 `
 
 const ExperienceContent = styled.div`
-  background-color: ${props => props.theme.palette.primary.light};
+  background-color: ${props => props.theme.palette.primary.main};
   padding: 30px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;

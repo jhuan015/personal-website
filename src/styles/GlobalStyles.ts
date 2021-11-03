@@ -26,19 +26,19 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     text-decoration: none;
     :hover {
       cursor: pointer;
-      color: ${props => props.theme.palette.primary.dark};
+      color: ${props => props.theme.palette.primary.contrast};
     }
     :focus {
       ${DashedFocus}
     }
     li {
       :hover {
-      color: ${props => props.theme.palette.primary.dark};
+      color: ${props => props.theme.palette.primary.contrast};
       }
     }
   }
   p, li {
-    color: ${props => props.theme.palette.text.primary};
+    color: ${props => props.theme.palette.text.light};
     letter-spacing: 0.5px;
     line-height: 1.5;
   }
@@ -78,7 +78,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     opacity: 0.7;
   }
   ::selection {
-    background:  ${props => props.theme.palette.primary.contrast};
+    background:  ${props => props.theme.palette.text.selection};
   }
   ::-moz-selection {
     background:  ${props => props.theme.palette.primary.contrast};

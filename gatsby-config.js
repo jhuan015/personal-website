@@ -53,7 +53,7 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-graphql-codegen',
+    // 'gatsby-plugin-graphql-codegen',
     {
       resolve: 'gatsby-source-sanity',
       options: {

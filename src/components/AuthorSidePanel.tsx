@@ -13,6 +13,9 @@ const SidePanelStyles = styled.aside`
   position: sticky;
   top: 69px;
   left: 0;
+  h1 {
+    color: ${props => props.theme.palette.primary.contrast};
+  }
   ${props => props.theme.breakpoints.up('md')} {
     display: block;
   }
@@ -31,7 +34,7 @@ const LinkStyles = styled(Link)`
     transform: translateY(-5px);
     svg {
       transform: translateX(-5px);
-      fill: ${props => props.theme.palette.primary.dark};
+      fill: ${props => props.theme.palette.primary.contrast};
     }
   }
 `
@@ -41,7 +44,7 @@ const NavContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  background-color: ${props => props.theme.palette.primary.light};
+  background-color: ${props => props.theme.palette.primary.main};
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   padding: 25px;
@@ -77,6 +80,11 @@ const NavContainer = styled.div`
   }
 `
 
+const SocialLinkStyles = styled.ul`
+  li {
+    margin: 10px;
+  }
+`
 interface Props {
   authorImageAlt: string
   authorImageSrc: IGatsbyImageData
@@ -108,10 +116,10 @@ const AuthorSidePanel: React.FC<Props> = ({
           <h3>Hi, I&apos;m Jonathan!</h3>
           <p className="center">
             {' '}
-            I&apos;m a software engineer based in Irvine, CA specializing in
-            front end development.
+            I&apos;m a software engineer based in Southern California
+            specializing in front end development.
           </p>
-          <ul>
+          <SocialLinkStyles>
             {socialLinks.map(social => (
               <li key={social.name}>
                 <a target="_blank" rel="noreferrer" href={social.src}>
@@ -119,7 +127,7 @@ const AuthorSidePanel: React.FC<Props> = ({
                 </a>
               </li>
             ))}
-          </ul>
+          </SocialLinkStyles>
         </NavContainer>
       </nav>
     </SidePanelStyles>

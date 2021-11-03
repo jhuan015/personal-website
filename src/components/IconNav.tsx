@@ -16,13 +16,20 @@ const IconContainerStyles = styled.div`
   box-shadow: none;
   svg {
     ${ContrastIconButton}
+    transition: bottom ease-in 300ms;
+    position: relative;
   }
   a {
     position: relative;
-    transition: bottom ease-in 300ms;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
     :focus,
-    :hover {
+    :hover svg {
       bottom: 5px;
+      color: ${props => props.theme.palette.primary.contrast};
+      fill: ${props => props.theme.palette.primary.contrast};
     }
   }
   ${props => props.theme.breakpoints.up('md')} {
@@ -39,7 +46,7 @@ const MobileBottomNavStyles = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 60px;
-  background-color: ${props => props.theme.palette.primary.light};
+  background-color: ${props => props.theme.palette.primary.main};
   z-index: 10;
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
     rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,

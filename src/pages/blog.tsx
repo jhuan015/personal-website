@@ -10,7 +10,7 @@ import SEO from '../components/SEO'
 
 const PostContainer = styled.div`
   display: block;
-  background-color: ${props => props.theme.palette.primary.light};
+  background-color: ${props => props.theme.palette.primary.main};
   transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
@@ -99,6 +99,10 @@ const BlogPostContainer = styled.div`
   }
 `
 
+const DateStyles = styled.p`
+  color: ${props => props.theme.palette.primary.light};
+`
+
 interface Props {
   data: Query
 }
@@ -114,12 +118,12 @@ const BlogPage: React.FC<Props> = ({ data }) => {
           <h2>{post.title}</h2>
           <p>{post.excerpt}</p>
           {/* Add Tags */}
-          <p>
+          <DateStyles>
             Published{' '}
             {formatDistance(new Date(post.publishedAt), new Date(), {
               addSuffix: true,
             })}
-          </p>
+          </DateStyles>
         </PostContent>
       </PostContainer>
     </Link>

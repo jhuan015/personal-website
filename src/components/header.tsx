@@ -11,7 +11,7 @@ const FilledButtonStyles = styled(FilledButton)`
 `
 
 const HeaderStyles = styled.header`
-  background: ${props => props.theme.palette.primary.light};
+  background: ${props => props.theme.palette.primary.main};
   position: fixed;
   top: 0;
   left: 0;
@@ -23,8 +23,8 @@ const HeaderStyles = styled.header`
   li {
     :focus,
     :hover {
-      color: ${props => props.theme.palette.primary.dark};
-      fill: ${props => props.theme.palette.primary.dark};
+      color: ${props => props.theme.palette.primary.contrast};
+      fill: ${props => props.theme.palette.primary.contrast};
     }
   }
 `
