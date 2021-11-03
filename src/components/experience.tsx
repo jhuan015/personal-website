@@ -6,6 +6,8 @@ import EvisionsSVG from '../assets/images/svg/evisions.svg'
 import JsqSVG from '../assets/images/svg/jsq.svg'
 import { breakpoints } from '../styles/theme'
 
+const isBrowser = typeof window !== 'undefined'
+
 const ExpedienceStyles = styled.section`
   display: grid;
   grid-template-columns: 1fr;
@@ -320,7 +322,7 @@ const companyMap = [
 const Experience: React.FC = () => {
   const [tab, setTab] = useState(0)
   // Doesn't resize with a window resize but that's fine, could add a listener.
-  const isMobile = window.innerWidth < breakpoints.md
+  const isMobile = isBrowser ? window.innerWidth < breakpoints.md : false
   const tabHeaders = useMemo(
     () =>
       companyMap.map((company, index) => (
